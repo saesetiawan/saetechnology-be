@@ -1,0 +1,42 @@
+POST http://localhost:3135/api/storage/upload-file
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="field-name"; filename="file.txt"
+
+< ./relative/path/to/local_file.txt
+--WebAppBoundary--
+
+###
+POST http://localhost:3135/api/register
+Content-Type: application/json
+
+{
+  "full_name": "Bagus aditia setiawan",
+  "phone": "081224173721",
+  "email": "braditya12@gmail.com",
+  "password": "braditya12"
+}
+
+###
+GET http://localhost:3135/api/profile
+Accept: application/json
+Authorization: Bearer {{access_token}}
+
+###
+POST http://localhost:3135/api/login
+Content-Type: application/json
+
+{
+  "email": "braditya12@gmail.com",
+  "password": "braditya12"
+}
+
+> {% client.global.set("access_token", response.body.accessToken); %}
+
+###
+GET http://localhost:3135/health
+Accept: application/json
+
+###
+
