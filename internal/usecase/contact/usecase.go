@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	cacheDomain "saetechnology-be/internal/domain/cache"
-	contactDomain "saetechnology-be/internal/domain/contact"
-	"saetechnology-be/internal/domain/jsonvalue"
-	"saetechnology-be/internal/helpers"
-	"saetechnology-be/internal/pkg/logger"
+	cacheDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/cache"
+	contactDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/contact"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/jsonvalue"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/helpers"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 
 	"github.com/google/uuid"
 )

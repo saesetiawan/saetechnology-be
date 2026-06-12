@@ -3,9 +3,9 @@ package broker
 import (
 	"context"
 	"encoding/json"
-	"saetechnology-be/internal/domain/broker"
-	"saetechnology-be/internal/usecase/email_register"
-	"saetechnology-be/internal/usecase/publish_register"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/broker"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/email_register"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/publish_register"
 )
 
 type UserConsumer struct {

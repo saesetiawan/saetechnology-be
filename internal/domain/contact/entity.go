@@ -3,7 +3,7 @@ package contact
 import (
 	"time"
 
-	"saetechnology-be/internal/domain/jsonvalue"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/jsonvalue"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"

@@ -1,9 +1,9 @@
 package recover
 
 import (
-	"saetechnology-be/internal/delivery/http/exception"
-	"saetechnology-be/internal/delivery/http/response"
-	"saetechnology-be/internal/pkg/logger"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/exception"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/response"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 	"net/http"
 )
 

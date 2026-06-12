@@ -3,17 +3,17 @@ package handler
 import (
 	"errors"
 	"fmt"
-	"saetechnology-be/internal/constant"
-	"saetechnology-be/internal/delivery/http/exception"
-	"saetechnology-be/internal/domain/storage"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/constant"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/exception"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/storage"
 	"io"
 	"net/http"
 	"strings"
 
 	"go.opentelemetry.io/otel/trace"
 
-	"saetechnology-be/internal/delivery/http/response"
-	"saetechnology-be/internal/usecase/upload"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/response"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/upload"
 
 	"github.com/julienschmidt/httprouter"
 )

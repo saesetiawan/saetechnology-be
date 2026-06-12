@@ -2,12 +2,12 @@ package email_register
 
 import (
 	"fmt"
-	"saetechnology-be/internal/pkg/logger"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 	"strings"
 	"time"
 
-	"saetechnology-be/internal/config"
-	"saetechnology-be/internal/domain/email"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/email"
 )
 
 type UseCase interface {

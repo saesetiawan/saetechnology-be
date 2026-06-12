@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"saetechnology-be/internal/delivery/http/exception"
-	"saetechnology-be/internal/delivery/http/response"
-	contactDomain "saetechnology-be/internal/domain/contact"
-	"saetechnology-be/internal/pkg/validator"
-	contactUsecase "saetechnology-be/internal/usecase/contact"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/exception"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/response"
+	contactDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/contact"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/validator"
+	contactUsecase "github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/contact"
 
 	"github.com/julienschmidt/httprouter"
 	"go.opentelemetry.io/otel/trace"

@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"saetechnology-be/internal/constant"
-	"saetechnology-be/internal/delivery/http/exception"
-	authMiddleware "saetechnology-be/internal/delivery/http/middleware/auth"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/constant"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/exception"
+	authMiddleware "github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware/auth"
 )
 
 func requireAdmin(r *http.Request) {

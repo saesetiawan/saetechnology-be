@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"github.com/google/uuid"
-	"saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
 	"time"
 
 	"crypto/rsa"

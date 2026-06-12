@@ -1,4 +1,4 @@
-module saetechnology-be
+module github.com/bagusaditiasetiawan/saetechnology-be
 
 go 1.25.0
 

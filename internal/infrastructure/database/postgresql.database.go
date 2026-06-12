@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

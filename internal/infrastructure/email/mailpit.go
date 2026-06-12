@@ -6,7 +6,7 @@ import (
 	"net/smtp"
 	"strings"
 
-	emailDomain "saetechnology-be/internal/domain/email"
+	emailDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/email"
 )
 
 type MailpitClient struct {

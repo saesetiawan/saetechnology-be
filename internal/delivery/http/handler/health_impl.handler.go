@@ -3,7 +3,7 @@ package handler
 
 import (
 	"github.com/julienschmidt/httprouter"
-	"saetechnology-be/internal/delivery/http/response"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/response"
 	"net/http"
 )
 

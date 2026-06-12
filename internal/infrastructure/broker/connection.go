@@ -2,7 +2,7 @@ package broker
 
 import (
 	rabbitmq "github.com/wagslane/go-rabbitmq"
-	"saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
 )
 
 func NewRabbitConnection(config *config.Config) *rabbitmq.Conn {

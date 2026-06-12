@@ -4,11 +4,11 @@ import (
 	"context"
 	"strings"
 
-	cacheDomain "saetechnology-be/internal/domain/cache"
-	"saetechnology-be/internal/domain/jsonvalue"
-	websiteSettingDomain "saetechnology-be/internal/domain/website_setting"
-	"saetechnology-be/internal/helpers"
-	"saetechnology-be/internal/pkg/logger"
+	cacheDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/cache"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/jsonvalue"
+	websiteSettingDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/website_setting"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/helpers"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 )
 
 type UseCase interface {

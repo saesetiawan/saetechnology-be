@@ -3,7 +3,7 @@ package upload
 import (
 	"context"
 
-	"saetechnology-be/internal/domain/storage"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/storage"
 
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

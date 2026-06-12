@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	contentDomain "saetechnology-be/internal/domain/content"
+	contentDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/content"
 
 	"github.com/google/uuid"
 	"go.opentelemetry.io/otel/attribute"

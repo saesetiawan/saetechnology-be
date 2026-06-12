@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"saetechnology-be/internal/config"
-	"saetechnology-be/internal/infrastructure/database"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/infrastructure/database"
 	"log"
 	"os"
 
-	"saetechnology-be/internal/di"
-	"saetechnology-be/internal/pkg/tracing"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/di"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/tracing"
 )
 
 func main() {

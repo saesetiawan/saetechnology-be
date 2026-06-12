@@ -5,11 +5,11 @@ import (
 	"errors"
 	"net/http"
 
-	"saetechnology-be/internal/delivery/http/exception"
-	"saetechnology-be/internal/delivery/http/response"
-	websiteSettingDomain "saetechnology-be/internal/domain/website_setting"
-	"saetechnology-be/internal/pkg/validator"
-	websiteSettingUsecase "saetechnology-be/internal/usecase/website_setting"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/exception"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/response"
+	websiteSettingDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/website_setting"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/validator"
+	websiteSettingUsecase "github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/website_setting"
 
 	"github.com/julienschmidt/httprouter"
 	"go.opentelemetry.io/otel/trace"

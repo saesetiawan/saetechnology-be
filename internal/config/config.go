@@ -2,7 +2,7 @@ package config
 
 import (
 	"crypto/rsa"
-	"saetechnology-be/internal/delivery/http/security/jwt"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/security/jwt"
 	"log"
 
 	"github.com/joho/godotenv"

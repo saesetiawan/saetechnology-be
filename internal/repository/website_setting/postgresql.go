@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	websiteSettingDomain "saetechnology-be/internal/domain/website_setting"
+	websiteSettingDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/website_setting"
 
 	"github.com/google/uuid"
 	"go.opentelemetry.io/otel/codes"

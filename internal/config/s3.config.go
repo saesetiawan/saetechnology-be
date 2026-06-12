@@ -1,6 +1,6 @@
 package config
 
-import "saetechnology-be/internal/infrastructure/storage"
+import "github.com/bagusaditiasetiawan/saetechnology-be/internal/infrastructure/storage"
 
 func LoadS3Config(cfg *Config) storage.S3Config {
 	return storage.S3Config{

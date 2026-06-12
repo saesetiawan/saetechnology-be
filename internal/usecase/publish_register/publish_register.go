@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 
-	"saetechnology-be/internal/config"
-	"saetechnology-be/internal/domain/broker"
-	"saetechnology-be/internal/domain/user"
-	"saetechnology-be/internal/pkg/logger"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/broker"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/user"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

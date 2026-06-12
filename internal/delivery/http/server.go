@@ -2,10 +2,10 @@ package http
 
 import (
 	"fmt"
-	"saetechnology-be/internal/config"
-	corsMiddleware "saetechnology-be/internal/delivery/http/middleware/cors"
-	middlewareRecover "saetechnology-be/internal/delivery/http/middleware/recover"
-	"saetechnology-be/internal/delivery/http/middleware/tracing"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
+	corsMiddleware "github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware/cors"
+	middlewareRecover "github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware/recover"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware/tracing"
 	"go.opentelemetry.io/otel/trace"
 	"net/http"
 	"time"

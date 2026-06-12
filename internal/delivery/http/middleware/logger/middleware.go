@@ -2,7 +2,7 @@ package logger
 
 import (
 	"github.com/julienschmidt/httprouter"
-	"saetechnology-be/internal/pkg/logger"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 	"net/http"
 	"time"
 )

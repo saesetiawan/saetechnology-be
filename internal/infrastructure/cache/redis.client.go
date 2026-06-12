@@ -1,7 +1,7 @@
 package cache
 
 import (
-	"saetechnology-be/internal/config"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
 
 	"github.com/redis/go-redis/v9"
 )

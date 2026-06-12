@@ -5,7 +5,7 @@ import (
 
 	rabbitmq "github.com/wagslane/go-rabbitmq"
 
-	"saetechnology-be/internal/domain/broker"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/broker"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"

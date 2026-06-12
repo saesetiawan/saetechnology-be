@@ -3,8 +3,8 @@ package email
 import (
 	"strings"
 
-	"saetechnology-be/internal/config"
-	emailDomain "saetechnology-be/internal/domain/email"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/config"
+	emailDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/email"
 )
 
 func NewEmailSender(cfg *config.Config) emailDomain.EmailSender {

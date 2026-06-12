@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	cacheDomain "saetechnology-be/internal/domain/cache"
+	cacheDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/cache"
 )
 
 const DefaultCacheTTL = 5 * time.Minute

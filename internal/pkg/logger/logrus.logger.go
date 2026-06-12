@@ -89,7 +89,7 @@ func getCallerFields(skip int) logrus.Fields {
 func trimFunctionName(name string) string {
 	// Optional: biar tidak terlalu panjang.
 	// Dari:
-	// saetechnology-be/internal/delivery/http/middleware.(*LoggerMiddleware).ServeHTTP
+	// github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware.(*LoggerMiddleware).ServeHTTP
 	// Jadi:
 	// middleware.(*LoggerMiddleware).ServeHTTP
 

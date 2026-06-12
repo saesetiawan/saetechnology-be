@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	cacheDomain "saetechnology-be/internal/domain/cache"
-	contentDomain "saetechnology-be/internal/domain/content"
-	"saetechnology-be/internal/domain/jsonvalue"
-	"saetechnology-be/internal/helpers"
-	"saetechnology-be/internal/pkg/logger"
+	cacheDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/cache"
+	contentDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/content"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/jsonvalue"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/helpers"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 
 	"github.com/google/uuid"
 )

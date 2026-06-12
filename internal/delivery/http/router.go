@@ -1,11 +1,11 @@
 package http
 
 import (
-	"saetechnology-be/internal/delivery/http/handler"
-	middleware "saetechnology-be/internal/delivery/http/middleware/auth"
-	loggerMiddleware "saetechnology-be/internal/delivery/http/middleware/logger"
-	"saetechnology-be/internal/pkg/jwt"
-	"saetechnology-be/internal/pkg/logger"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/handler"
+	middleware "github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware/auth"
+	loggerMiddleware "github.com/bagusaditiasetiawan/saetechnology-be/internal/delivery/http/middleware/logger"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/jwt"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/logger"
 
 	"github.com/julienschmidt/httprouter"
 )

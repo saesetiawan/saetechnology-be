@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	cacheDomain "saetechnology-be/internal/domain/cache"
+	cacheDomain "github.com/bagusaditiasetiawan/saetechnology-be/internal/domain/cache"
 
 	"github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/otel/attribute"
