@@ -225,6 +225,34 @@ func (r *PostgresqlRepository) Update(
 	return nil
 }
 
+func (r *PostgresqlRepository) Delete(
+	ctx context.Context,
+	id string,
+) error {
+	ctx, span := r.tracer.Start(ctx, "WebsiteContentRepository.Delete")
+	defer span.End()
+
+	result := r.db.
+		WithContext(ctx).
+		Where("id = ?", id).
+		Delete(&contentDomain.WebsiteContent{})
+
+	if result.Error != nil {
+		span.RecordError(result.Error)
+		span.SetStatus(codes.Error, "failed delete website content")
+		return result.Error
+	}
+	if result.RowsAffected != 1 {
+		err := errors.New("website content not found")
+		span.RecordError(err)
+		span.SetStatus(codes.Error, "website content not found")
+		return err
+	}
+
+	span.SetStatus(codes.Ok, "success delete website content")
+	return nil
+}
+
 func normalizePagination(page int, limit int) (int, int, int) {
 	if page <= 0 {
 		page = 1

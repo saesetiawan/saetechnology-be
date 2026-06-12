@@ -8,4 +8,5 @@ type Repository interface {
 	FindByKey(ctx context.Context, key string) (*WebsiteContent, error)
 	FindAll(ctx context.Context, query ListWebsiteContentQuery) ([]WebsiteContent, int64, error)
 	Update(ctx context.Context, payload *WebsiteContent) error
+	Delete(ctx context.Context, id string) error
 }

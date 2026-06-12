@@ -20,6 +20,7 @@ type UseCase interface {
 	FindByID(ctx context.Context, id string) (*contentDomain.WebsiteContent, error)
 	FindByKey(ctx context.Context, key string) (*contentDomain.WebsiteContent, error)
 	FindAll(ctx context.Context, query contentDomain.ListWebsiteContentQuery) ([]contentDomain.WebsiteContent, int64, error)
+	Delete(ctx context.Context, id string) error
 }
 
 type useCaseImpl struct {
@@ -135,6 +136,17 @@ func (uc *useCaseImpl) FindAll(
 	}, helpers.DefaultCacheTTL)
 
 	return result, total, nil
+}
+
+func (uc *useCaseImpl) Delete(ctx context.Context, id string) error {
+	uc.logger.Info("process delete website content")
+
+	if err := uc.repository.Delete(ctx, id); err != nil {
+		return err
+	}
+
+	helpers.DeleteCacheByPrefix(ctx, uc.cache, "website-contents:")
+	return nil
 }
 
 func buildEntityFromCreate(

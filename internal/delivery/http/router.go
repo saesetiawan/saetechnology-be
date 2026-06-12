@@ -51,6 +51,7 @@ func NewRouter(
 	router.GET("/api/website-contents", withAuth(contentHandler.FindAll))
 	router.GET("/api/website-contents/:id", withAuth(contentHandler.FindByID))
 	router.PUT("/api/website-contents/:id", withAuth(contentHandler.Update))
+	router.DELETE("/api/website-contents/:id", withAuth(contentHandler.Delete))
 
 	router.GET("/api/public/website-settings", withLogger(websiteSettingHandler.FindPublic))
 	router.GET("/api/website-settings", withAuth(websiteSettingHandler.Find))

@@ -23,6 +23,7 @@ type ContentHandler interface {
 	FindAll(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	FindPublic(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	Update(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
+	Delete(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 }
 
 type ContentHandlerImpl struct {
@@ -198,6 +199,31 @@ func (h *ContentHandlerImpl) Update(
 	}
 
 	h.successResponse.Send(ctx, w, http.StatusOK, result)
+}
+
+func (h *ContentHandlerImpl) Delete(
+	w http.ResponseWriter,
+	r *http.Request,
+	ps httprouter.Params,
+) {
+	requireAdmin(r)
+
+	ctx, span := h.tracer.Start(r.Context(), "ContentHandler.Delete")
+	defer span.End()
+
+	id := ps.ByName("id")
+	if id == "" {
+		panic(exception.NewBadRequestException("id is required"))
+	}
+
+	if err := h.usecase.Delete(ctx, id); err != nil {
+		span.RecordError(err)
+		panic(exception.NewBadRequestException(err.Error()))
+	}
+
+	h.successResponse.Send(ctx, w, http.StatusOK, map[string]interface{}{
+		"message": "website content deleted successfully",
+	})
 }
 
 func parseContentQuery(
