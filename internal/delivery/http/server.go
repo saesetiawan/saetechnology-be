@@ -2,10 +2,10 @@ package http
 
 import (
 	"fmt"
-	"go-platform-core/internal/config"
-	corsMiddleware "go-platform-core/internal/delivery/http/middleware/cors"
-	middlewareRecover "go-platform-core/internal/delivery/http/middleware/recover"
-	"go-platform-core/internal/delivery/http/middleware/tracing"
+	"saetechnology-be/internal/config"
+	corsMiddleware "saetechnology-be/internal/delivery/http/middleware/cors"
+	middlewareRecover "saetechnology-be/internal/delivery/http/middleware/recover"
+	"saetechnology-be/internal/delivery/http/middleware/tracing"
 	"go.opentelemetry.io/otel/trace"
 	"net/http"
 	"time"

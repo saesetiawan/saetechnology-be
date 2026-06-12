@@ -4,11 +4,11 @@ import (
 	"context"
 	"strings"
 
-	cacheDomain "go-platform-core/internal/domain/cache"
-	"go-platform-core/internal/domain/jsonvalue"
-	websiteSettingDomain "go-platform-core/internal/domain/website_setting"
-	"go-platform-core/internal/helpers"
-	"go-platform-core/internal/pkg/logger"
+	cacheDomain "saetechnology-be/internal/domain/cache"
+	"saetechnology-be/internal/domain/jsonvalue"
+	websiteSettingDomain "saetechnology-be/internal/domain/website_setting"
+	"saetechnology-be/internal/helpers"
+	"saetechnology-be/internal/pkg/logger"
 )
 
 type UseCase interface {

@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"go-platform-core/internal/constant"
-	"go-platform-core/internal/delivery/http/exception"
-	authMiddleware "go-platform-core/internal/delivery/http/middleware/auth"
+	"saetechnology-be/internal/constant"
+	"saetechnology-be/internal/delivery/http/exception"
+	authMiddleware "saetechnology-be/internal/delivery/http/middleware/auth"
 )
 
 func requireAdmin(r *http.Request) {

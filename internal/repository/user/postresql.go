@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"go-platform-core/internal/domain/user"
+	"saetechnology-be/internal/domain/user"
 
 	"github.com/google/uuid"
 	"go.opentelemetry.io/otel/attribute"

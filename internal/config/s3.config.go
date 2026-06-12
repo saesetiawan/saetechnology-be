@@ -1,6 +1,6 @@
 package config
 
-import "go-platform-core/internal/infrastructure/storage"
+import "saetechnology-be/internal/infrastructure/storage"
 
 func LoadS3Config(cfg *Config) storage.S3Config {
 	return storage.S3Config{

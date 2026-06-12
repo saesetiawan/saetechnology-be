@@ -1,7 +1,7 @@
 package cache
 
 import (
-	"go-platform-core/internal/config"
+	"saetechnology-be/internal/config"
 
 	"github.com/redis/go-redis/v9"
 )

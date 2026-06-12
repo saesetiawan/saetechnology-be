@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	cacheDomain "go-platform-core/internal/domain/cache"
+	cacheDomain "saetechnology-be/internal/domain/cache"
 )
 
 const DefaultCacheTTL = 5 * time.Minute

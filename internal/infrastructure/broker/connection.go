@@ -2,7 +2,7 @@ package broker
 
 import (
 	rabbitmq "github.com/wagslane/go-rabbitmq"
-	"go-platform-core/internal/config"
+	"saetechnology-be/internal/config"
 )
 
 func NewRabbitConnection(config *config.Config) *rabbitmq.Conn {

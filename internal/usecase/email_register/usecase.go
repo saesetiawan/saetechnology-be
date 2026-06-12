@@ -2,12 +2,12 @@ package email_register
 
 import (
 	"fmt"
-	"go-platform-core/internal/pkg/logger"
+	"saetechnology-be/internal/pkg/logger"
 	"strings"
 	"time"
 
-	"go-platform-core/internal/config"
-	"go-platform-core/internal/domain/email"
+	"saetechnology-be/internal/config"
+	"saetechnology-be/internal/domain/email"
 )
 
 type UseCase interface {

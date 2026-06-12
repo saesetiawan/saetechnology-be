@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"go-platform-core/internal/config"
+	"saetechnology-be/internal/config"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

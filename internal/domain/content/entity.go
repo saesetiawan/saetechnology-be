@@ -3,7 +3,7 @@ package content
 import (
 	"time"
 
-	"go-platform-core/internal/domain/jsonvalue"
+	"saetechnology-be/internal/domain/jsonvalue"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"

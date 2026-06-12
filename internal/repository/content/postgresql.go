@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	contentDomain "go-platform-core/internal/domain/content"
+	contentDomain "saetechnology-be/internal/domain/content"
 
 	"github.com/google/uuid"
 	"go.opentelemetry.io/otel/attribute"

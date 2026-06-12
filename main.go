@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"go-platform-core/internal/config"
-	"go-platform-core/internal/infrastructure/database"
+	"saetechnology-be/internal/config"
+	"saetechnology-be/internal/infrastructure/database"
 	"log"
 	"os"
 
-	"go-platform-core/internal/di"
-	"go-platform-core/internal/pkg/tracing"
+	"saetechnology-be/internal/di"
+	"saetechnology-be/internal/pkg/tracing"
 )
 
 func main() {

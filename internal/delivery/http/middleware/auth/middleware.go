@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"go-platform-core/internal/delivery/http/exception"
-	jwtPkg "go-platform-core/internal/pkg/jwt"
+	"saetechnology-be/internal/delivery/http/exception"
+	jwtPkg "saetechnology-be/internal/pkg/jwt"
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/julienschmidt/httprouter"

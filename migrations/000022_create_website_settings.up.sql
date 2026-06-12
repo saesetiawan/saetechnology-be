@@ -30,7 +30,7 @@ INSERT INTO website_settings (
 ) VALUES (
     '00000000-0000-0000-0000-000000000100',
     'SAE Technology Solution',
-    'Custom software, custom apps, dan SaaS untuk bisnis yang ingin bergerak lebih cepat',
+    'Professional custom software, custom systems, and SaaS solutions for businesses that want to move faster and scale with confidence.',
     '#0f766e',
     '#f59e0b',
     '{}'::jsonb

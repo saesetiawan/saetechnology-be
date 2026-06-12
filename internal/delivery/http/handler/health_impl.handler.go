@@ -3,7 +3,7 @@ package handler
 
 import (
 	"github.com/julienschmidt/httprouter"
-	"go-platform-core/internal/delivery/http/response"
+	"saetechnology-be/internal/delivery/http/response"
 	"net/http"
 )
 

@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"go-platform-core/internal/delivery/http/exception"
-	"go-platform-core/internal/delivery/http/response"
-	contentDomain "go-platform-core/internal/domain/content"
-	"go-platform-core/internal/pkg/validator"
-	contentUsecase "go-platform-core/internal/usecase/content"
+	"saetechnology-be/internal/delivery/http/exception"
+	"saetechnology-be/internal/delivery/http/response"
+	contentDomain "saetechnology-be/internal/domain/content"
+	"saetechnology-be/internal/pkg/validator"
+	contentUsecase "saetechnology-be/internal/usecase/content"
 
 	"github.com/julienschmidt/httprouter"
 	"go.opentelemetry.io/otel/trace"

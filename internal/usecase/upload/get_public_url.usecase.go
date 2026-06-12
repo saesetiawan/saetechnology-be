@@ -3,7 +3,7 @@ package upload
 import (
 	"context"
 
-	"go-platform-core/internal/domain/storage"
+	"saetechnology-be/internal/domain/storage"
 
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

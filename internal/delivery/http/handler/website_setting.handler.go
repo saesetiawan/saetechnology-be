@@ -5,11 +5,11 @@ import (
 	"errors"
 	"net/http"
 
-	"go-platform-core/internal/delivery/http/exception"
-	"go-platform-core/internal/delivery/http/response"
-	websiteSettingDomain "go-platform-core/internal/domain/website_setting"
-	"go-platform-core/internal/pkg/validator"
-	websiteSettingUsecase "go-platform-core/internal/usecase/website_setting"
+	"saetechnology-be/internal/delivery/http/exception"
+	"saetechnology-be/internal/delivery/http/response"
+	websiteSettingDomain "saetechnology-be/internal/domain/website_setting"
+	"saetechnology-be/internal/pkg/validator"
+	websiteSettingUsecase "saetechnology-be/internal/usecase/website_setting"
 
 	"github.com/julienschmidt/httprouter"
 	"go.opentelemetry.io/otel/trace"

@@ -1,11 +1,11 @@
 package http
 
 import (
-	"go-platform-core/internal/delivery/http/handler"
-	middleware "go-platform-core/internal/delivery/http/middleware/auth"
-	loggerMiddleware "go-platform-core/internal/delivery/http/middleware/logger"
-	"go-platform-core/internal/pkg/jwt"
-	"go-platform-core/internal/pkg/logger"
+	"saetechnology-be/internal/delivery/http/handler"
+	middleware "saetechnology-be/internal/delivery/http/middleware/auth"
+	loggerMiddleware "saetechnology-be/internal/delivery/http/middleware/logger"
+	"saetechnology-be/internal/pkg/jwt"
+	"saetechnology-be/internal/pkg/logger"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -13,6 +13,7 @@ import (
 func NewRouter(
 	websiteSettingHandler handler.WebsiteSettingHandler,
 	contentHandler handler.ContentHandler,
+	contactHandler handler.ContactHandler,
 	jwtService jwt.JWT,
 	logger logger.Logger,
 	healthHandler handler.HealthHandler,
@@ -52,6 +53,11 @@ func NewRouter(
 	router.GET("/api/website-contents/:id", withAuth(contentHandler.FindByID))
 	router.PUT("/api/website-contents/:id", withAuth(contentHandler.Update))
 	router.DELETE("/api/website-contents/:id", withAuth(contentHandler.Delete))
+
+	router.GET("/api/public/contact-captcha", withLogger(contactHandler.CreateCaptcha))
+	router.POST("/api/public/contact-messages", withLogger(contactHandler.Create))
+	router.GET("/api/contact-messages", withAuth(contactHandler.FindAll))
+	router.PATCH("/api/contact-messages/:id/status", withAuth(contactHandler.UpdateStatus))
 
 	router.GET("/api/public/website-settings", withLogger(websiteSettingHandler.FindPublic))
 	router.GET("/api/website-settings", withAuth(websiteSettingHandler.Find))

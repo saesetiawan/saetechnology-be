@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"github.com/google/uuid"
-	"go-platform-core/internal/config"
+	"saetechnology-be/internal/config"
 	"time"
 
 	"crypto/rsa"

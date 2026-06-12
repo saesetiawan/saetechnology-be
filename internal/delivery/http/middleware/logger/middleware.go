@@ -2,7 +2,7 @@ package logger
 
 import (
 	"github.com/julienschmidt/httprouter"
-	"go-platform-core/internal/pkg/logger"
+	"saetechnology-be/internal/pkg/logger"
 	"net/http"
 	"time"
 )

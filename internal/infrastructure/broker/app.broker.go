@@ -3,9 +3,9 @@ package broker
 import (
 	"context"
 	"encoding/json"
-	"go-platform-core/internal/domain/broker"
-	"go-platform-core/internal/usecase/email_register"
-	"go-platform-core/internal/usecase/publish_register"
+	"saetechnology-be/internal/domain/broker"
+	"saetechnology-be/internal/usecase/email_register"
+	"saetechnology-be/internal/usecase/publish_register"
 )
 
 type UserConsumer struct {

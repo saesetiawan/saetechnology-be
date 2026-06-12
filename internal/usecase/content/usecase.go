@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	cacheDomain "go-platform-core/internal/domain/cache"
-	contentDomain "go-platform-core/internal/domain/content"
-	"go-platform-core/internal/domain/jsonvalue"
-	"go-platform-core/internal/helpers"
-	"go-platform-core/internal/pkg/logger"
+	cacheDomain "saetechnology-be/internal/domain/cache"
+	contentDomain "saetechnology-be/internal/domain/content"
+	"saetechnology-be/internal/domain/jsonvalue"
+	"saetechnology-be/internal/helpers"
+	"saetechnology-be/internal/pkg/logger"
 
 	"github.com/google/uuid"
 )

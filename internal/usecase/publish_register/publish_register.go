@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 
-	"go-platform-core/internal/config"
-	"go-platform-core/internal/domain/broker"
-	"go-platform-core/internal/domain/user"
-	"go-platform-core/internal/pkg/logger"
+	"saetechnology-be/internal/config"
+	"saetechnology-be/internal/domain/broker"
+	"saetechnology-be/internal/domain/user"
+	"saetechnology-be/internal/pkg/logger"
 
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

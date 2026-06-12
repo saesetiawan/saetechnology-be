@@ -1,9 +1,9 @@
 package recover
 
 import (
-	"go-platform-core/internal/delivery/http/exception"
-	"go-platform-core/internal/delivery/http/response"
-	"go-platform-core/internal/pkg/logger"
+	"saetechnology-be/internal/delivery/http/exception"
+	"saetechnology-be/internal/delivery/http/response"
+	"saetechnology-be/internal/pkg/logger"
 	"net/http"
 )
 

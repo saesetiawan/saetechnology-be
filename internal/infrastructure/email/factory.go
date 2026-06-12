@@ -3,8 +3,8 @@ package email
 import (
 	"strings"
 
-	"go-platform-core/internal/config"
-	emailDomain "go-platform-core/internal/domain/email"
+	"saetechnology-be/internal/config"
+	emailDomain "saetechnology-be/internal/domain/email"
 )
 
 func NewEmailSender(cfg *config.Config) emailDomain.EmailSender {

@@ -7,103 +7,119 @@
 package di
 
 import (
-	"net/http"
-
-	"go-platform-core/internal/config"
-	httpDelivery "go-platform-core/internal/delivery/http"
-	"go-platform-core/internal/delivery/http/handler"
-	recoverMiddleware "go-platform-core/internal/delivery/http/middleware/recover"
-	"go-platform-core/internal/delivery/http/response"
-	brokerDomain "go-platform-core/internal/domain/broker"
-	"go-platform-core/internal/infrastructure/broker"
-	"go-platform-core/internal/infrastructure/cache"
-	"go-platform-core/internal/infrastructure/database"
-	"go-platform-core/internal/infrastructure/email"
-	"go-platform-core/internal/infrastructure/storage"
-	"go-platform-core/internal/pkg/hash"
-	"go-platform-core/internal/pkg/jwt"
-	"go-platform-core/internal/pkg/logger"
-	"go-platform-core/internal/pkg/tracing"
-	"go-platform-core/internal/pkg/validator"
-	"go-platform-core/internal/repository/content"
-	"go-platform-core/internal/repository/user"
-	"go-platform-core/internal/repository/website_setting"
-	"go-platform-core/internal/usecase/auth"
-	contentUsecase "go-platform-core/internal/usecase/content"
-	"go-platform-core/internal/usecase/email_register"
-	"go-platform-core/internal/usecase/publish_register"
-	"go-platform-core/internal/usecase/upload"
-	websiteSettingUsecase "go-platform-core/internal/usecase/website_setting"
-
+	"github.com/google/wire"
+	"github.com/julienschmidt/httprouter"
+	"saetechnology-be/internal/config"
+	httpDelivery "saetechnology-be/internal/delivery/http"
+	"saetechnology-be/internal/delivery/http/handler"
+	recoverMiddleware "saetechnology-be/internal/delivery/http/middleware/recover"
+	"saetechnology-be/internal/delivery/http/response"
+	brokerDomain "saetechnology-be/internal/domain/broker"
+	"saetechnology-be/internal/infrastructure/broker"
+	"saetechnology-be/internal/infrastructure/cache"
+	"saetechnology-be/internal/infrastructure/database"
+	"saetechnology-be/internal/infrastructure/email"
+	"saetechnology-be/internal/infrastructure/storage"
+	"saetechnology-be/internal/pkg/hash"
+	"saetechnology-be/internal/pkg/jwt"
+	"saetechnology-be/internal/pkg/logger"
+	"saetechnology-be/internal/pkg/tracing"
+	"saetechnology-be/internal/pkg/validator"
+	"saetechnology-be/internal/repository/contact"
+	"saetechnology-be/internal/repository/content"
+	"saetechnology-be/internal/repository/user"
+	"saetechnology-be/internal/repository/website_setting"
+	"saetechnology-be/internal/usecase/auth"
+	contactUsecase "saetechnology-be/internal/usecase/contact"
+	contentUsecase "saetechnology-be/internal/usecase/content"
+	"saetechnology-be/internal/usecase/email_register"
+	"saetechnology-be/internal/usecase/publish_register"
+	"saetechnology-be/internal/usecase/upload"
+	websiteSettingUsecase "saetechnology-be/internal/usecase/website_setting"
 	"gorm.io/gorm"
+	"net/http"
 )
 
+// Injectors from injector.go:
+
 func InitServer() *http.Server {
-	loggerService := logger.NewLogrus()
-	cfg := config.Load()
-	db := database.NewPostgresql(cfg)
+	loggerLogger := logger.NewLogrus()
+	validatorValidator := validator.NewValidator()
+	configConfig := config.Load()
+	db := database.NewPostgresql(configConfig)
 	tracerProvider := tracing.NewTracerProvider()
+	repository := website_setting.NewPostgresqlRepository(db, tracerProvider)
+	redisConfig := config.LoadRedisConfig(configConfig)
+	client := cache.NewRedisClient(redisConfig)
+	cacheRepository := cache.NewRedisRepository(client, tracerProvider)
+	useCase := websiteSettingUsecase.NewUseCase(loggerLogger, repository, cacheRepository)
 	responder := response.NewJSONResponder()
 	successResponse := response.NewSuccessResponse(responder)
-	validatorService := validator.NewValidator()
-	jwtService := jwt.NewJWT(cfg)
-	hasher := hash.NewArgon2Hasher()
-
-	conn := broker.NewRabbitConnection(cfg)
-	publisher := broker.NewRabbitPublisher(conn, tracerProvider)
-	registerPublisher := publish_register.NewUseCase(cfg, loggerService, publisher, tracerProvider)
-
-	userRepository := user.NewPostgresqlRepository(db, tracerProvider)
-	authUsecase := auth.NewUseCase(registerPublisher, loggerService, jwtService, userRepository, cfg, hasher, tracerProvider)
-	authHandler := handler.NewAuthHandler(validatorService, authUsecase, responder, tracerProvider)
-
-	redisConfig := config.LoadRedisConfig(cfg)
-	redisClient := cache.NewRedisClient(redisConfig)
-	cacheRepository := cache.NewRedisRepository(redisClient, tracerProvider)
-
+	websiteSettingHandler := handler.NewWebsiteSettingHandler(validatorValidator, useCase, successResponse, tracerProvider)
 	contentRepository := content.NewPostgresqlRepository(db, tracerProvider)
-	contentService := contentUsecase.NewUseCase(loggerService, contentRepository, cacheRepository)
-	contentHandler := handler.NewContentHandler(validatorService, contentService, successResponse, tracerProvider)
-
-	websiteSettingRepository := website_setting.NewPostgresqlRepository(db, tracerProvider)
-	websiteSettingService := websiteSettingUsecase.NewUseCase(loggerService, websiteSettingRepository, cacheRepository)
-	websiteSettingHandler := handler.NewWebsiteSettingHandler(validatorService, websiteSettingService, successResponse, tracerProvider)
-
-	s3Config := config.LoadS3Config(cfg)
-	storageService := storage.NewS3Storage(s3Config, tracerProvider)
-	fileUploadUsecase := upload.NewFileUploadUseCase(storageService, tracerProvider)
-	storageHandler := handler.NewStorageHandlerImpl(fileUploadUsecase, successResponse, tracerProvider)
-
+	contentUseCase := contentUsecase.NewUseCase(loggerLogger, contentRepository, cacheRepository)
+	contentHandler := handler.NewContentHandler(validatorValidator, contentUseCase, successResponse, tracerProvider)
+	contactRepository := contact.NewPostgresqlRepository(db, tracerProvider)
+	contactUseCase := contactUsecase.NewUseCase(loggerLogger, contactRepository, cacheRepository)
+	contactHandler := handler.NewContactHandler(validatorValidator, contactUseCase, successResponse, tracerProvider)
+	jwtJWT := jwt.NewJWT(configConfig)
 	healthHandler := handler.NewHealthHandler(responder)
-	router := httpDelivery.NewRouter(
-		websiteSettingHandler,
-		contentHandler,
-		jwtService,
-		loggerService,
-		healthHandler,
-		authHandler,
-		storageHandler,
-	)
-	recoverHandler := recoverMiddleware.NewMiddleware(loggerService, router, responder)
-	return httpDelivery.NewServer(recoverHandler, cfg, router, tracerProvider)
+	conn := broker.NewRabbitConnection(configConfig)
+	publisher := broker.NewRabbitPublisher(conn, tracerProvider)
+	publish_registerUseCase := publish_register.NewUseCase(configConfig, loggerLogger, publisher, tracerProvider)
+	userRepository := user.NewPostgresqlRepository(db, tracerProvider)
+	hasher := hash.NewArgon2Hasher()
+	usecase := auth.NewUseCase(publish_registerUseCase, loggerLogger, jwtJWT, userRepository, configConfig, hasher, tracerProvider)
+	authHandler := handler.NewAuthHandler(validatorValidator, usecase, responder, tracerProvider)
+	s3Config := config.LoadS3Config(configConfig)
+	storageStorage := storage.NewS3Storage(s3Config, tracerProvider)
+	fileUploadUseCase := upload.NewFileUploadUseCase(storageStorage, tracerProvider)
+	storageHandler := handler.NewStorageHandlerImpl(fileUploadUseCase, successResponse, tracerProvider)
+	router := httpDelivery.NewRouter(websiteSettingHandler, contentHandler, contactHandler, jwtJWT, loggerLogger, healthHandler, authHandler, storageHandler)
+	middleware := recoverMiddleware.NewMiddleware(loggerLogger, router, responder)
+	server := httpDelivery.NewServer(middleware, configConfig, router, tracerProvider)
+	return server
 }
 
 func InitPostgresql() (*gorm.DB, error) {
-	cfg := config.Load()
-	return database.NewPostgresql(cfg), nil
+	configConfig := config.Load()
+	db := database.NewPostgresql(configConfig)
+	return db, nil
 }
 
 func InitConsumer() brokerDomain.Consumer {
-	cfg := config.Load()
-	conn := broker.NewRabbitConnection(cfg)
+	configConfig := config.Load()
+	conn := broker.NewRabbitConnection(configConfig)
 	tracerProvider := tracing.NewTracerProvider()
-	return broker.NewRabbitConsumer(conn, tracerProvider)
+	consumer := broker.NewRabbitConsumer(conn, tracerProvider)
+	return consumer
 }
 
 func InitRegisterEmailConsumer() *broker.UserConsumer {
-	cfg := config.Load()
-	emailSender := email.NewEmailSender(cfg)
-	loggerService := logger.NewLogrus()
-	registerUsecase := email_register.NewUseCase(emailSender, cfg, loggerService)
-	return broker.NewUserConsumer(registerUsecase)
+	configConfig := config.Load()
+	emailSender := email.NewEmailSender(configConfig)
+	loggerLogger := logger.NewLogrus()
+	useCase := email_register.NewUseCase(emailSender, configConfig, loggerLogger)
+	userConsumer := broker.NewUserConsumer(useCase)
+	return userConsumer
 }
+
+// injector.go:
+
+var loggerSet = wire.NewSet(logger.NewLogrus)
+
+var cacheSet = wire.NewSet(config.LoadRedisConfig, cache.NewRedisClient, cache.NewRedisRepository)
+
+var registerEmailSet = wire.NewSet(broker.NewRabbitConnection, broker.NewRabbitPublisher, publish_register.NewUseCase)
+
+var authHandlerSet = wire.NewSet(user.NewPostgresqlRepository, hash.NewArgon2Hasher, registerEmailSet, auth.NewUseCase, handler.NewAuthHandler)
+
+var contentHandlerSet = wire.NewSet(content.NewPostgresqlRepository, contentUsecase.NewUseCase, handler.NewContentHandler)
+
+var contactHandlerSet = wire.NewSet(contact.NewPostgresqlRepository, contactUsecase.NewUseCase, handler.NewContactHandler)
+
+var websiteSettingHandlerSet = wire.NewSet(website_setting.NewPostgresqlRepository, websiteSettingUsecase.NewUseCase, handler.NewWebsiteSettingHandler)
+
+var storageHandlerSet = wire.NewSet(config.LoadS3Config, storage.NewS3Storage, upload.NewFileUploadUseCase, handler.NewStorageHandlerImpl)
+
+var httpSet = wire.NewSet(response.NewJSONResponder, response.NewSuccessResponse, handler.NewHealthHandler, httpDelivery.NewRouter, recoverMiddleware.NewMiddleware, wire.Bind(new(http.Handler), new(*httprouter.Router)), httpDelivery.NewServer)

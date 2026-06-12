@@ -2,7 +2,7 @@ package config
 
 import (
 	"crypto/rsa"
-	"go-platform-core/internal/delivery/http/security/jwt"
+	"saetechnology-be/internal/delivery/http/security/jwt"
 	"log"
 
 	"github.com/joho/godotenv"

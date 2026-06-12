@@ -1,4 +1,4 @@
-module go-platform-core
+module saetechnology-be
 
 go 1.25.0
 
