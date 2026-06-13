@@ -118,6 +118,76 @@ func buildEntity(
 		borderColor = "#e2e8f0"
 	}
 
+	primaryContrastColor := strings.TrimSpace(payload.PrimaryContrastColor)
+	if primaryContrastColor == "" {
+		primaryContrastColor = "#ffffff"
+	}
+
+	accentContrastColor := strings.TrimSpace(payload.AccentContrastColor)
+	if accentContrastColor == "" {
+		accentContrastColor = "#ffffff"
+	}
+
+	surfaceContrastColor := strings.TrimSpace(payload.SurfaceContrastColor)
+	if surfaceContrastColor == "" {
+		surfaceContrastColor = textColor
+	}
+
+	successColor := strings.TrimSpace(payload.SuccessColor)
+	if successColor == "" {
+		successColor = "#10b981"
+	}
+
+	warningColor := strings.TrimSpace(payload.WarningColor)
+	if warningColor == "" {
+		warningColor = "#f59e0b"
+	}
+
+	dangerColor := strings.TrimSpace(payload.DangerColor)
+	if dangerColor == "" {
+		dangerColor = "#ef4444"
+	}
+
+	infoColor := strings.TrimSpace(payload.InfoColor)
+	if infoColor == "" {
+		infoColor = "#3b82f6"
+	}
+
+	labelColor := strings.TrimSpace(payload.LabelColor)
+	if labelColor == "" {
+		labelColor = textColor
+	}
+
+	labelBackgroundColor := strings.TrimSpace(payload.LabelBackgroundColor)
+	if labelBackgroundColor == "" {
+		labelBackgroundColor = secondaryColor
+	}
+
+	fontFamily := strings.TrimSpace(payload.FontFamily)
+	if fontFamily == "" {
+		fontFamily = "Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif"
+	}
+
+	headingFontFamily := strings.TrimSpace(payload.HeadingFontFamily)
+	if headingFontFamily == "" {
+		headingFontFamily = fontFamily
+	}
+
+	borderRadius := strings.TrimSpace(payload.BorderRadius)
+	if borderRadius == "" {
+		borderRadius = "2rem"
+	}
+
+	buttonRadius := strings.TrimSpace(payload.ButtonRadius)
+	if buttonRadius == "" {
+		buttonRadius = "999px"
+	}
+
+	shadowStyle := strings.TrimSpace(payload.ShadowStyle)
+	if shadowStyle == "" {
+		shadowStyle = "0 18px 60px rgba(15, 23, 42, 0.10)"
+	}
+
 	return &websiteSettingDomain.WebsiteSetting{
 		SiteName:           strings.TrimSpace(payload.SiteName),
 		Tagline:            strings.TrimSpace(payload.Tagline),
@@ -140,6 +210,20 @@ func buildEntity(
 		TextColor:          textColor,
 		MutedTextColor:     mutedTextColor,
 		BorderColor:        borderColor,
+		PrimaryContrastColor: primaryContrastColor,
+		AccentContrastColor:  accentContrastColor,
+		SurfaceContrastColor: surfaceContrastColor,
+		SuccessColor:         successColor,
+		WarningColor:         warningColor,
+		DangerColor:          dangerColor,
+		InfoColor:            infoColor,
+		LabelColor:           labelColor,
+		LabelBackgroundColor: labelBackgroundColor,
+		FontFamily:           fontFamily,
+		HeadingFontFamily:    headingFontFamily,
+		BorderRadius:         borderRadius,
+		ButtonRadius:         buttonRadius,
+		ShadowStyle:          shadowStyle,
 		Metadata:           metadata,
 	}, nil
 }

@@ -10,6 +10,6 @@ func LoadRedisConfig(config *Config) *RedisConfig {
 	return &RedisConfig{
 		Addr:     config.RedisAddr,
 		Password: getEnv("REDIS_PASSWORD", ""),
-		DB:       0,
+		DB:       1,
 	}
 }

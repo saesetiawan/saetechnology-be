@@ -14,6 +14,7 @@ func NewRouter(
 	websiteSettingHandler handler.WebsiteSettingHandler,
 	contentHandler handler.ContentHandler,
 	contactHandler handler.ContactHandler,
+	productHandler handler.ProductHandler,
 	jwtService jwt.JWT,
 	logger logger.Logger,
 	healthHandler handler.HealthHandler,
@@ -58,6 +59,14 @@ func NewRouter(
 	router.POST("/api/public/contact-messages", withLogger(contactHandler.Create))
 	router.GET("/api/contact-messages", withAuth(contactHandler.FindAll))
 	router.PATCH("/api/contact-messages/:id/status", withAuth(contactHandler.UpdateStatus))
+
+	router.GET("/api/public/products", withLogger(productHandler.FindPublic))
+	router.GET("/api/public/products/:slug", withLogger(productHandler.FindPublicBySlug))
+	router.POST("/api/products", withAuth(productHandler.Create))
+	router.GET("/api/products", withAuth(productHandler.FindAll))
+	router.GET("/api/products/:id", withAuth(productHandler.FindByID))
+	router.PUT("/api/products/:id", withAuth(productHandler.Update))
+	router.DELETE("/api/products/:id", withAuth(productHandler.Delete))
 
 	router.GET("/api/public/website-settings", withLogger(websiteSettingHandler.FindPublic))
 	router.GET("/api/website-settings", withAuth(websiteSettingHandler.Find))

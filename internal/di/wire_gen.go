@@ -27,6 +27,7 @@ import (
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/validator"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/contact"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/content"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/product"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/user"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/website_setting"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/auth"
@@ -35,6 +36,7 @@ import (
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/email_register"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/publish_register"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/upload"
+	productUsecase "github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/product"
 	websiteSettingUsecase "github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/website_setting"
 	"gorm.io/gorm"
 	"net/http"
@@ -62,6 +64,9 @@ func InitServer() *http.Server {
 	contactRepository := contact.NewPostgresqlRepository(db, tracerProvider)
 	contactUseCase := contactUsecase.NewUseCase(loggerLogger, contactRepository, cacheRepository)
 	contactHandler := handler.NewContactHandler(validatorValidator, contactUseCase, successResponse, tracerProvider)
+	productRepository := product.NewPostgresqlRepository(db, tracerProvider)
+	productService := productUsecase.NewUseCase(loggerLogger, productRepository, cacheRepository)
+	productHandler := handler.NewProductHandler(validatorValidator, productService, successResponse, tracerProvider)
 	jwtJWT := jwt.NewJWT(configConfig)
 	healthHandler := handler.NewHealthHandler(responder)
 	conn := broker.NewRabbitConnection(configConfig)
@@ -75,7 +80,7 @@ func InitServer() *http.Server {
 	storageStorage := storage.NewS3Storage(s3Config, tracerProvider)
 	fileUploadUseCase := upload.NewFileUploadUseCase(storageStorage, tracerProvider)
 	storageHandler := handler.NewStorageHandlerImpl(fileUploadUseCase, successResponse, tracerProvider)
-	router := httpDelivery.NewRouter(websiteSettingHandler, contentHandler, contactHandler, jwtJWT, loggerLogger, healthHandler, authHandler, storageHandler)
+	router := httpDelivery.NewRouter(websiteSettingHandler, contentHandler, contactHandler, productHandler, jwtJWT, loggerLogger, healthHandler, authHandler, storageHandler)
 	middleware := recoverMiddleware.NewMiddleware(loggerLogger, router, responder)
 	server := httpDelivery.NewServer(middleware, configConfig, router, tracerProvider)
 	return server
@@ -117,6 +122,8 @@ var authHandlerSet = wire.NewSet(user.NewPostgresqlRepository, hash.NewArgon2Has
 var contentHandlerSet = wire.NewSet(content.NewPostgresqlRepository, contentUsecase.NewUseCase, handler.NewContentHandler)
 
 var contactHandlerSet = wire.NewSet(contact.NewPostgresqlRepository, contactUsecase.NewUseCase, handler.NewContactHandler)
+
+var productHandlerSet = wire.NewSet(product.NewPostgresqlRepository, productUsecase.NewUseCase, handler.NewProductHandler)
 
 var websiteSettingHandlerSet = wire.NewSet(website_setting.NewPostgresqlRepository, websiteSettingUsecase.NewUseCase, handler.NewWebsiteSettingHandler)
 

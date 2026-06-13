@@ -22,5 +22,19 @@ type UpdateWebsiteSettingDto struct {
 	TextColor          string `json:"text_color" validate:"max=20"`
 	MutedTextColor     string `json:"muted_text_color" validate:"max=20"`
 	BorderColor        string `json:"border_color" validate:"max=20"`
+	PrimaryContrastColor string `json:"primary_contrast_color" validate:"max=20"`
+	AccentContrastColor  string `json:"accent_contrast_color" validate:"max=20"`
+	SurfaceContrastColor string `json:"surface_contrast_color" validate:"max=20"`
+	SuccessColor         string `json:"success_color" validate:"max=20"`
+	WarningColor         string `json:"warning_color" validate:"max=20"`
+	DangerColor          string `json:"danger_color" validate:"max=20"`
+	InfoColor            string `json:"info_color" validate:"max=20"`
+	LabelColor           string `json:"label_color" validate:"max=20"`
+	LabelBackgroundColor string `json:"label_background_color" validate:"max=20"`
+	FontFamily           string `json:"font_family" validate:"max=160"`
+	HeadingFontFamily    string `json:"heading_font_family" validate:"max=160"`
+	BorderRadius         string `json:"border_radius" validate:"max=20"`
+	ButtonRadius         string `json:"button_radius" validate:"max=20"`
+	ShadowStyle          string `json:"shadow_style" validate:"max=160"`
 	Metadata           string `json:"metadata"`
 }

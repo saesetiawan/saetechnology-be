@@ -28,6 +28,7 @@ import (
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/pkg/validator"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/contact"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/content"
+	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/product"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/user"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/repository/website_setting"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/auth"
@@ -36,6 +37,7 @@ import (
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/email_register"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/publish_register"
 	"github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/upload"
+	productUsecase "github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/product"
 	websiteSettingUsecase "github.com/bagusaditiasetiawan/saetechnology-be/internal/usecase/website_setting"
 )
 
@@ -73,6 +75,12 @@ var contactHandlerSet = wire.NewSet(
 	handler.NewContactHandler,
 )
 
+var productHandlerSet = wire.NewSet(
+	product.NewPostgresqlRepository,
+	productUsecase.NewUseCase,
+	handler.NewProductHandler,
+)
+
 var websiteSettingHandlerSet = wire.NewSet(
 	website_setting.NewPostgresqlRepository,
 	websiteSettingUsecase.NewUseCase,
@@ -108,6 +116,7 @@ func InitServer() *http.Server {
 		authHandlerSet,
 		contentHandlerSet,
 		contactHandlerSet,
+		productHandlerSet,
 		websiteSettingHandlerSet,
 		storageHandlerSet,
 		httpSet,

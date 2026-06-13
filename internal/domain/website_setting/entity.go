@@ -31,6 +31,20 @@ type WebsiteSetting struct {
 	TextColor          string         `json:"text_color" gorm:"column:text_color"`
 	MutedTextColor     string         `json:"muted_text_color" gorm:"column:muted_text_color"`
 	BorderColor        string         `json:"border_color" gorm:"column:border_color"`
+	PrimaryContrastColor string       `json:"primary_contrast_color" gorm:"column:primary_contrast_color"`
+	AccentContrastColor  string       `json:"accent_contrast_color" gorm:"column:accent_contrast_color"`
+	SurfaceContrastColor string       `json:"surface_contrast_color" gorm:"column:surface_contrast_color"`
+	SuccessColor         string       `json:"success_color" gorm:"column:success_color"`
+	WarningColor         string       `json:"warning_color" gorm:"column:warning_color"`
+	DangerColor          string       `json:"danger_color" gorm:"column:danger_color"`
+	InfoColor            string       `json:"info_color" gorm:"column:info_color"`
+	LabelColor           string       `json:"label_color" gorm:"column:label_color"`
+	LabelBackgroundColor string       `json:"label_background_color" gorm:"column:label_background_color"`
+	FontFamily           string       `json:"font_family" gorm:"column:font_family"`
+	HeadingFontFamily    string       `json:"heading_font_family" gorm:"column:heading_font_family"`
+	BorderRadius         string       `json:"border_radius" gorm:"column:border_radius"`
+	ButtonRadius         string       `json:"button_radius" gorm:"column:button_radius"`
+	ShadowStyle          string       `json:"shadow_style" gorm:"column:shadow_style"`
 	Metadata           jsonvalue.JSON `json:"metadata" gorm:"column:metadata;type:jsonb"`
 	CreatedAt          time.Time      `json:"created_at" gorm:"column:created_at"`
 	UpdatedAt          time.Time      `json:"updated_at" gorm:"column:updated_at"`
