@@ -2,7 +2,7 @@ package content
 
 type CreateWebsiteContentDto struct {
 	Key            string `json:"key" validate:"required,max=120"`
-	Type           string `json:"type" validate:"required,oneof=hero banner section promo announcement carousel profile"`
+	Type           string `json:"type" validate:"required,oneof=hero banner section promo announcement carousel profile service service-grid service-detail use-case use-case-grid use-case-detail blog blog-grid blog-post process pricing faq testimonial case-study-grid"`
 	Placement      string `json:"placement" validate:"required,max=80"`
 	Title          string `json:"title" validate:"required,max=255"`
 	Subtitle       string `json:"subtitle"`
@@ -20,7 +20,7 @@ type CreateWebsiteContentDto struct {
 type UpdateWebsiteContentDto struct {
 	ID             string `json:"id"`
 	Key            string `json:"key" validate:"required,max=120"`
-	Type           string `json:"type" validate:"required,oneof=hero banner section promo announcement carousel profile"`
+	Type           string `json:"type" validate:"required,oneof=hero banner section promo announcement carousel profile service service-grid service-detail use-case use-case-grid use-case-detail blog blog-grid blog-post process pricing faq testimonial case-study-grid"`
 	Placement      string `json:"placement" validate:"required,max=80"`
 	Title          string `json:"title" validate:"required,max=255"`
 	Subtitle       string `json:"subtitle"`
